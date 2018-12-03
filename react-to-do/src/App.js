@@ -7,8 +7,8 @@ class App extends Component {
     super(props);
     this.state = {
       todos: [
-        { description: 'Walk the cat', isCompleted: true},
-        {description: 'Throw the dishes away', isCompleted: false }, 
+        { description: 'Walk the cat', isCompleted: true },
+        { description: 'Throw the dishes away', isCompleted: false }, 
         { description: 'Buy new dishes', isCompleted: false }
       ]
     };
@@ -18,10 +18,8 @@ class App extends Component {
     return (
       <div className="App">
         <ul>
-          <ToDo />
-          <ToDo />
           { this.state.todos.map( (todo, index) =>
-            <ToDo key={ index } /> 
+            <ToDo key={ index } description={ todo.description } isCompleted={ todo.isCompleted }/> 
             )}
         </ul>
       </div>
