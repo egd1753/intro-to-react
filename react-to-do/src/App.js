@@ -15,21 +15,6 @@ class App extends Component {
     };
   }
 
-  deleteTodo() {
-    function isntDeleted() {
-
-    }
-    const unselectedItems = [];
-    
-    this.setState(unselectedItems) 
-  }
-
-  /*
-  deleteTodo() {
-    const unselectedItems =  
-  }
-  */
-
   handleChange(e) {
     this.setState({ newTodoDescription: e.target.value })
   }
@@ -48,23 +33,46 @@ class App extends Component {
     this.setState({ todos: todos});
   }
 
+  handleDeleteToDo(e) {
+    const isDeleted = e.target.value;
+    const notDeleted = this.state.todos.filter(); 
+    this.setState();
+
+  }
+
   render() {
     return (
       <div className="App">
         <ul>
           { this.state.todos.map( (todo, index) =>
-            <ToDo key={ index } description={ todo.description } isCompleted={ todo.isCompleted } toggleComplete={ () => this.toggleComplete(index) } deleteTodo={ } /> 
-            )}
+            <ToDo 
+              key={ index } 
+              description={ todo.description } 
+              isCompleted={ todo.isCompleted } 
+              toggleComplete={ () => this.toggleComplete(index) } 
+              deleteToDo={(e) => this.handleDeleteToDo(e)} 
+            /> 
+          )}
         </ul>
+
         <form onSubmit={ (e) => this.handleSubmit(e) }>
-          <input type="text" value={this.state.newTodoDescription } onChange={ (e) => this.handleChange(e) } />
-          <input type="submit" />
+          <input type='submit'/>
+          <input 
+            type="text" 
+            value={this.state.newTodoDescription } 
+            onChange={ (e) => this.handleChange(e) } 
+          />
+          
         </form>
       </div>
     );
   }
 }
 
-
+/*<input 
+            type='submit'
+            value='Delete'
+            deleteToDo={(index) => this.handleDeleteToDo(index)}
+          />*/
 
 export default App;
