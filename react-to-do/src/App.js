@@ -33,11 +33,11 @@ class App extends Component {
     this.setState({ todos: todos});
   }
 
-  handleDeleteToDo(e) {
-    const isDeleted = e.target.value;
-    const notDeleted = this.state.todos.filter(); 
-    this.setState();
-
+  handleDeleteToDo(index) {
+    const currentToDos = this.state.todos.slice();
+    const willDelete = currentToDos[index];
+    currentToDos.splice(willDelete, 1);
+    this.setState({ todos: currentToDos });
   }
 
   render() {
@@ -50,7 +50,7 @@ class App extends Component {
               description={ todo.description } 
               isCompleted={ todo.isCompleted } 
               toggleComplete={ () => this.toggleComplete(index) } 
-              deleteToDo={(e) => this.handleDeleteToDo(e)} 
+              deleteToDo={(index) => this.handleDeleteToDo(index)} 
             /> 
           )}
         </ul>
@@ -59,7 +59,7 @@ class App extends Component {
           <input type='submit'/>
           <input 
             type="text" 
-            value={this.state.newTodoDescription } 
+            value={ this.state.newTodoDescription } 
             onChange={ (e) => this.handleChange(e) } 
           />
           
@@ -69,10 +69,5 @@ class App extends Component {
   }
 }
 
-/*<input 
-            type='submit'
-            value='Delete'
-            deleteToDo={(index) => this.handleDeleteToDo(index)}
-          />*/
 
 export default App;
